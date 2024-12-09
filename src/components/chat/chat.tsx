@@ -4,17 +4,19 @@ import CircularProgress from '../circularProgress/circularProgress';
 import { Avatar, AvatarFallback } from '../ui/avatar';
 import { ScrollArea } from '../ui/scroll-area';
 
-interface ChatProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface ChatProps extends React.HTMLAttributes<HTMLDivElement> {
+	containerClassName?: string;
+}
 
-export default function Chat({ ...props }: ChatProps) {
+export default function Chat({ containerClassName, ...props }: ChatProps) {
 	const { history, isLoading } = useChatContext();
 
 	const dialog = history.map((item, index) => ({ ...item, id: index }));
 
 	return (
 		<>
-			<ScrollArea>
-				<div {...props} className={twMerge('flex flex-col gap-2 px-20', props.className)}>
+			<ScrollArea className={props.className}>
+				<div {...props} className={twMerge('flex flex-col gap-2 px-20', containerClassName)}>
 					{dialog.map((item, index) => {
 						if (item.role === 'response') {
 							return <Response key={index} content={item.content} />;

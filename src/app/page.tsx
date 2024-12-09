@@ -8,7 +8,7 @@ import { ReactNode } from 'react';
 
 export default function Home() {
 	return (
-		<div className='h-screen p-4 font-[family-name:var(--font-geist-sans)]'>
+		<div className='flex h-screen p-4 font-[family-name:var(--font-geist-sans)]'>
 			<Actions>
 				<>
 					<ChangeTheme />
@@ -16,7 +16,7 @@ export default function Home() {
 				</>
 			</Actions>
 
-			<Chat className='flex-1' />
+			<Chat containerClassName='flex-1' className='flex-1' />
 
 			<SubmitPrompt />
 		</div>
