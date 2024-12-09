@@ -2,15 +2,15 @@
 
 import { cva } from 'class-variance-authority';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { twMerge } from 'tailwind-merge';
 
 interface TextFieldProps extends DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-	register?: any;
+	register?: UseFormRegisterReturn<string>;
 	placeholder?: string;
 	variant?: 'contained' | 'default';
 	size?: 'sm' | 'lg';
 	type?: string;
-	mask?: string;
 	id?: string;
 	className?: string;
 	min?: number;
@@ -20,7 +20,6 @@ export default function TextField({
 	placeholder,
 	variant,
 	size,
-	mask,
 	type,
 	register,
 	id,

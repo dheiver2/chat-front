@@ -1,7 +1,7 @@
 'use client';
 
 import { HistoryItemProps } from '@/interfaces/historyItemProps';
-import { createContext, Dispatch, SetStateAction, useContext, useState } from 'react';
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react';
 
 interface ChatContextProps {
 	isLoading: boolean;
@@ -19,7 +19,7 @@ const ChatContext = createContext<ChatContextProps>({
 
 export const useChatContext = () => useContext(ChatContext);
 
-export const ChatProvider = ({ children }: any) => {
+export const ChatProvider = ({ children }: { children: ReactNode }) => {
 	const [history, setHistory] = useState<HistoryItemProps[]>([]);
 	const [isLoading, setLoading] = useState(false);
 

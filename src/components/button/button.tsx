@@ -11,8 +11,6 @@ interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 }
 
 export default function Button({ children, variant, size, loading, ...props }: ButtonProps) {
-	const variantStyle = {};
-
 	const buttonVariants = cva(
 		`border-primary flex w-full items-center justify-center gap-2 rounded-md tracking-wider outline-none transition-colors duration-500 hover:brightness-95 active:brightness-90 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60 disabled:brightness-100 data-[loading=true]:opacity-60 data-[loading=true]:pointer-events-none `,
 		{

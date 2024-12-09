@@ -5,6 +5,7 @@ import useChat from '../chat/useFetchChat';
 import toast from 'react-hot-toast';
 
 import { CornerDownRight } from 'lucide-react';
+import { twMerge } from 'tailwind-merge';
 import Button from '../button/button';
 import TextField from '../textField/textField';
 
@@ -31,7 +32,10 @@ export default function SubmitPrompt({ ...props }: SubmitPromptProps) {
 
 	return (
 		<form
-			className='border-border relative flex w-full items-center gap-2 border-t px-20 pt-4'
+			className={twMerge(
+				'border-border relative flex w-full items-center gap-2 border-t px-20 pt-4',
+				props.className
+			)}
 			onSubmit={handleSubmit(submit)}
 		>
 			<TextField
