@@ -8,7 +8,7 @@ import { ReactNode } from 'react';
 
 export default function Home() {
 	return (
-		<div className='flex h-screen p-4 font-[family-name:var(--font-geist-sans)]'>
+		<div className='flex h-screen flex-col p-4 font-[family-name:var(--font-geist-sans)]'>
 			<Actions>
 				<>
 					<ChangeTheme />
