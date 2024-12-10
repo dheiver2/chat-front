@@ -18,7 +18,7 @@ export default function Chat({ containerClassName, ...props }: ChatProps) {
 			<ScrollArea className={props.className}>
 				<div {...props} className={twMerge('flex flex-col gap-2 px-20', containerClassName)}>
 					{dialog.map((item, index) => {
-						if (item.role === 'response') {
+						if (item.role === 'assistant') {
 							return <Response key={index} content={item.content} />;
 						} else {
 							return <User key={index} content={item.content} />;

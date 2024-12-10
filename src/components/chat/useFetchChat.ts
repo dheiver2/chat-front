@@ -2,7 +2,7 @@ import { useChatContext } from '@/contexts/chatContext';
 import { api } from '@/lib/axios';
 
 const useChat = () => {
-	const { setLoading } = useChatContext();
+	const { setLoading, history } = useChatContext();
 
 	const respond = async (prompt: string) => {
 		const system = 'Você é um assistente técnico.';
@@ -10,10 +10,11 @@ const useChat = () => {
 		setLoading(true);
 		const response = await api.post('/chat/respond', {
 			message: prompt,
+			chat_history: history,
 			system_message: system,
 		});
 		setLoading(false);
-		console.log(response.data?.response);
+
 		return response.data?.response;
 	};
 

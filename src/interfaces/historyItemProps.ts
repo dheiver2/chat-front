@@ -1,4 +1,4 @@
 export interface HistoryItemProps {
-	role: 'user' | 'response';
+	role: 'user' | 'assistant';
 	content: string;
 }
