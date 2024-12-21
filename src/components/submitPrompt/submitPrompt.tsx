@@ -33,7 +33,7 @@ export default function SubmitPrompt({ ...props }: SubmitPromptProps) {
 	return (
 		<form
 			className={twMerge(
-				'border-border relative flex w-full items-center gap-2 border-t px-20 pt-4',
+				'border-border relative flex w-full items-center gap-2 border-t px-4 pt-4 sm:px-20',
 				props.className
 			)}
 			onSubmit={handleSubmit(submit)}

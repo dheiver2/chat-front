@@ -1,6 +1,9 @@
 import { ChatProvider } from '@/contexts/chatContext';
 import { ThemeProvider } from '@/contexts/themeContext';
+
 import InitAOS from '@/lib/init-aos';
+import 'aos/dist/aos.css';
+
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Toaster } from 'react-hot-toast';
@@ -33,7 +36,7 @@ export default function RootLayout({
 				<ChatProvider>
 					<body className={`${geistSans.variable} ${geistMono.variable} text-text bg-background antialiased`}>
 						{children}
-						<Toaster position='bottom-center' />
+						<Toaster position='top-center' />
 					</body>
 				</ChatProvider>
 			</ThemeProvider>

@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
+	content: [
+		'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+		'./src/components/**/*.{js,ts,jsx,tsx,mdx}',
+		'./src/app/**/*.{js,ts,jsx,tsx,mdx}',
+	],
+	theme: {
+		extend: {
 			colors: {
 				background: 'var(--background)',
 				foreground: 'var(--foreground)',
@@ -69,7 +69,33 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))',
 				},
 			},
-    },
-  },
-  plugins: [],
+
+			transitionTimingFunction: {
+				bounce: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)',
+				sidebar: 'cubic-bezier(0.25, 1, 0.5, 1.25)',
+			},
+			keyframes: {
+				'accordion-down': {
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' },
+				},
+				'accordion-up': {
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' },
+				},
+				animScale: {
+					'0, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.03)' },
+				},
+			},
+			animation: {
+				vush: 'spin 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both !important',
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'animated-scaleX': 'animScale 15s 1s ease-in-out infinite',
+				'pulse-bounce': 'animScale 0.4s ease-out',
+			},
+		},
+	},
+	plugins: [require('tailwindcss-animate')],
 } satisfies Config;

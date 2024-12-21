@@ -3,7 +3,6 @@ import { useTheme } from '@/contexts/themeContext';
 import { Icon } from '@iconify/react';
 
 import { twMerge } from 'tailwind-merge';
-import Button from '../button/button';
 
 interface ChangeThemeProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -14,10 +13,10 @@ export default function ChangeTheme({ ...props }: ChangeThemeProps) {
 	};
 	return (
 		<>
-			<Button className={twMerge('w-max', props.className)} onClick={changeTheme}>
-				<Icon icon='proicons:dark-theme' />
+			<div className={twMerge('flex w-max gap-2', props.className)} onClick={changeTheme}>
 				Alterar tema
-			</Button>
+				<Icon icon='proicons:dark-theme' />
+			</div>
 		</>
 	);
 }
