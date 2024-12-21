@@ -1,4 +1,7 @@
+'use client';
+
 import { useChatContext } from '@/contexts/chatContext';
+import { ElementRef, useEffect, useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 import CircularProgress from '../circularProgress/circularProgress';
 import { Avatar, AvatarFallback } from '../ui/avatar';
@@ -10,13 +13,20 @@ interface ChatProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function Chat({ containerClassName, ...props }: ChatProps) {
 	const { history, isLoading } = useChatContext();
+	const scrollAreaRef = useRef<ElementRef<typeof ScrollArea>>(null);
 
 	const dialog = history.map((item, index) => ({ ...item, id: index }));
 
+	useEffect(() => {
+		if (scrollAreaRef.current) {
+			scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
+		}
+	}, [history]);
+
 	return (
 		<>
-			<ScrollArea className={props.className}>
-				<div {...props} className={twMerge('flex flex-col gap-2 px-20', containerClassName)}>
+			<ScrollArea ref={scrollAreaRef} className={props.className}>
+				<div {...props} className={twMerge('flex flex-col gap-2 px-20 py-2', containerClassName)}>
 					{dialog.map((item, index) => {
 						if (item.role === 'assistant') {
 							return <Response key={index} content={item.content} />;
