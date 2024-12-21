@@ -108,12 +108,3 @@ export default function Home() {
 		</div>
 	);
 }
-
-const Actions = () => {
-	return (
-		<div className='flex items-center justify-end gap-2'>
-			<ChangeTheme />
-			<ClearChat />
-		</div>
-	);
-};
