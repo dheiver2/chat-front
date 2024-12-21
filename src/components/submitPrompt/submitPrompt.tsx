@@ -27,7 +27,7 @@ export default function SubmitPrompt({ ...props }: SubmitPromptProps) {
 
 		const response = await conversation.respond(message);
 
-		setHistory((prev) => [...prev, { role: 'assistant', content: response }]);
+		setHistory((prev) => [...prev, { role: 'assistant', content: response.response }]);
 	};
 
 	return (

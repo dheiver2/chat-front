@@ -1,21 +1,24 @@
 import { useChatContext } from '@/contexts/chatContext';
+import { HistoryItemProps } from '@/interfaces/historyItemProps';
 import { api } from '@/lib/axios';
+
+interface ChatResponse {
+	response: string;
+	history: HistoryItemProps[];
+}
 
 const useChat = () => {
 	const { setLoading, history } = useChatContext();
 
 	const respond = async (prompt: string) => {
-		const system = 'Você é um assistente técnico.';
-
 		setLoading(true);
 		const response = await api.post('/chat/respond', {
 			message: prompt,
-			chat_history: history,
-			system_message: system,
+			history: history,
 		});
 		setLoading(false);
 
-		return response.data?.response;
+		return response?.data as ChatResponse;
 	};
 
 	const getHistory = async () => {
