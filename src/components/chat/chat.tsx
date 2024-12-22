@@ -47,13 +47,31 @@ const User = ({ content }: { content: string }) => {
 };
 
 const Response = ({ content }: { content: string | React.ReactNode }) => {
+	const parseText = (text: string) => {
+		const regex = /\*\*(.*?)\*\*/g; // Para detectar negrito
+		const parts = text.split(regex);
+
+		return parts.map((part, index) =>
+			index % 2 === 1 ? (
+				<>
+					<hr className='border-border my-10 justify-self-center border md:w-1/2' />
+					<h1 key={index} className='text-xl'>
+						<b key={index}>{part}</b>
+					</h1>
+				</>
+			) : (
+				<span key={index}>{part}</span>
+			)
+		);
+	};
+
 	return (
 		<div className='bg-foreground flex gap-2 p-4'>
 			<Avatar className={twMerge('ease-bounce transition-transform duration-300')}>
 				{/* <AvatarImage src='https://github.com/shadcn.png' /> */}
 				<AvatarFallback>A</AvatarFallback>
 			</Avatar>
-			<div>{content}</div>
+			<div>{typeof content === 'string' ? parseText(content) : content}</div>
 		</div>
 	);
 };
